@@ -1,12 +1,10 @@
-home=$VENVS_HOME
-
 function workon {
   if [ $# -eq 0 ]
     then
       echo "Enviroment name needed"
   else
     venv=$1
-    . $home/$venv/bin/activate
+    . $VENVS_HOME/$venv/bin/activate
   fi
 }
 
@@ -16,7 +14,7 @@ function mkvenv {
       echo "Enviroment name needed"
   else
     venv=$1
-    python -m venv $home/$venv
+    python -m venv $VENVS_HOME/$venv
     workon $venv
   fi
 }
@@ -27,7 +25,7 @@ function rmvenv {
       echo "Enviroment name needed"
   else
     venv=$1
-    command \rm -r $home/$venv
+    command \rm -r $VENVS_HOME/$venv
   fi
 
 }
