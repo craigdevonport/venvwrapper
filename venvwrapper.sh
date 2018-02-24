@@ -1,8 +1,3 @@
-# add
-# export VENVS_HOME=/Users/craig/.venvs
-# source $VENVS_HOME/my_venvwrapper.sh
-# to .profile / .barsh_rc
-
 home=$VENVS_HOME
 
 function workon {
