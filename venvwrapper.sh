@@ -1,6 +1,13 @@
+function vevnvs_check_venvs_dir {
+  if [ ! -d "$VENVS_HOME/" ]
+  then
+    mkdir $VENVS_HOME
+  fi
+}
+
 function workon {
   if [ $# -eq 0 ]
-    then
+  then
       echo "Enviroment name needed"
   else
     venv=$1
@@ -10,22 +17,23 @@ function workon {
 
 function mkvenv {
   if [ $# -eq 0 ]
-    then
+  then
       echo "Enviroment name needed"
   else
-    if [ $VENV_PYTHON = "" ]
-      then
-        $VENV_PYTHON = ${command \which python}
+    if [ "$VENV_PYTHON" = "" ]
+    then
+        export VENV_PYTHON="$(command \which python)"
     fi
+    vevnvs_check_venvs_dir
     venv=$1
-    python -m venv $VENVS_HOME/$venv
+    $VENV_PYTHON -m venv $VENVS_HOME/$venv
     workon $venv
   fi
 }
 
 function rmvenv {
   if [ $# -eq 0 ]
-    then
+  then
       echo "Enviroment name needed"
   else
     venv=$1
