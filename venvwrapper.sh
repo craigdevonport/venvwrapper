@@ -13,6 +13,10 @@ function mkvenv {
     then
       echo "Enviroment name needed"
   else
+    if [ $VENV_PYTHON = "" ]
+      then
+        $VENV_PYTHON = ${command \which python}
+    fi
     venv=$1
     python -m venv $VENVS_HOME/$venv
     workon $venv
